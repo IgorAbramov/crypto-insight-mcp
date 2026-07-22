@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "crypto-insight-mcp"
+version = "0.1.0"
+description = "MCP server giving AI agents governed access to crypto market data and a RAG knowledge base"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Igors Abramovs" }]
+requires-python = ">=3.10"
+keywords = ["mcp", "model-context-protocol", "ai-agents", "rag", "langchain", "crypto"]
+dependencies = [
+    "mcp>=1.2",
+    "httpx>=0.27",
+    "pydantic>=2.7",
+    "fastapi>=0.111",
+    "uvicorn>=0.30",
+    "langchain-core>=0.3",
+    "langchain-text-splitters>=0.3",
+    "langchain-chroma>=0.2",
+    "chromadb>=0.5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff>=0.5"]
+agent = ["anthropic>=0.40"]
+
+[project.urls]
+Homepage = "https://github.com/IgorAbramov/crypto-insight-mcp"
+Repository = "https://github.com/IgorAbramov/crypto-insight-mcp"
+
+[project.scripts]
+crypto-insight-mcp = "crypto_insight_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/crypto_insight_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"

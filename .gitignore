@@ -1,0 +1,25 @@
+# Vector store
+.chroma/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+
+# Environments & secrets
+.env
+.venv/
+venv/
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+
+# Local bootstrap script (not part of the repo)
+run_local.sh
+fix_claude_config.sh

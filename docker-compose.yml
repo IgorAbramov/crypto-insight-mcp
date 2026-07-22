@@ -1,0 +1,24 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma-data:/data/chroma
+    environment:
+      # Set to 1 to skip the ONNX model download and use hash embeddings.
+      CIM_FORCE_HASH_EMBEDDINGS: "${CIM_FORCE_HASH_EMBEDDINGS:-}"
+
+  # The MCP server is a stdio process, so it is usually launched by the MCP
+  # client itself (see README for the Claude Desktop config). To run it in a
+  # container for debugging, uncomment:
+  #
+  # mcp:
+  #   build: .
+  #   stdin_open: true
+  #   volumes:
+  #     - chroma-data:/data/chroma
+  #   command: ["crypto-insight-mcp"]
+
+volumes:
+  chroma-data:
